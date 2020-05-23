@@ -14,9 +14,8 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var indicatorOutlet: UIActivityIndicatorView!
     
-    fileprivate struct PropertyKeys {
+    struct PropertyKeys {
         static let dataCell = "dataCell"
-        
         static let toThirdVC = "secondToThirdSegue"
     }
     
@@ -32,10 +31,6 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         cell.idLabel.text = String(apiData[indexPath.row].id)
         cell.titleLabel.text = String(apiData[indexPath.row].title)
         cell.thumbnaiImageView.image = nil
-        
-//        DispatchQueue.main.async {
-//            cell.thumbnaiImageView.image = self.getImage(urlStr: self.apiData[indexPath.row].thumbnailUrl)
-//        }
         
        APIController.shared.fetchImage(apiData[indexPath.row].thumbnailUrl) { (result) in
             switch result {
@@ -99,42 +94,17 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             }
         }
     }
-    
-//    func getImage(urlStr: String) -> () {
-//        var uiImage: UIImage?
-//        APIController.shared.fetchImage(urlStr) { (result) in
-//            switch result {
-//            case .success(let image):
-//                uiImage = image
-//            case .failure(let networkError):
-//                switch networkError {
-//                case .invalidUrl:
-//                    print(networkError)
-//                case .invalidResponse:
-//                    print(networkError)
-//                case .requestFailed(let error):
-//                    print(networkError, error)
-//                case .invalidData:
-//                    print(networkError)
-//                default:
-//                    print("Unidentified Error")
-//                }
-//
-//            }
-//        }
-//    }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setGradientBackground()
         setCollectionViewLayout()
         getAPIData()
-        
-//        APIController.shared.fetchAPIData { (apiData) in
-//            self.apiData = apiData!
-//        }
-        
+
+    }
+    
+    private func setGradientBackground() {
         let colour1 = #colorLiteral(red: 0.3803921569, green: 0.2901960784, blue: 0.8274509804, alpha: 1).cgColor
         let colour2 = #colorLiteral(red: 0.924761951, green: 0.2762447596, blue: 0.4667485952, alpha: 1).cgColor
         let gradient = CAGradientLayer()
@@ -143,7 +113,6 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         gradient.locations = [0, 1]
 
         view.layer.insertSublayer(gradient, at: 0)
-
     }
     
     private func setCollectionViewLayout() {
@@ -190,9 +159,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             }
         }
     }
-    
 }
-
 
 extension UIImage {
     var averageColor: UIColor? {
@@ -207,11 +174,12 @@ extension UIImage {
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
 
         return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
+        
     }
 }
 
-extension UIColor
-{
+extension UIColor {
+    
     var isDarkColor: Bool {
         var r, g, b, a: CGFloat
         (r, g, b, a) = (0, 0, 0, 0)

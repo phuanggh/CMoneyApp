@@ -17,7 +17,6 @@
 		7AF60F602472D9AB0009F457 /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF60F5F2472D9AB0009F457 /* ThirdVC.swift */; };
 		7AF60F622472DA620009F457 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF60F612472DA620009F457 /* APIData.swift */; };
 		7AF60F652472E3220009F457 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF60F642472E3220009F457 /* DataCell.swift */; };
-		7AF60F672472E6DB0009F457 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AF60F662472E6DB0009F457 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 		7AF60F5F2472D9AB0009F457 /* ThirdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 		7AF60F612472DA620009F457 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		7AF60F642472E3220009F457 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
-		7AF60F662472E6DB0009F457 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +70,6 @@
 				7AF60F5B2472D9530009F457 /* Views */,
 				7AF60F5C2472D96D0009F457 /* Controllers */,
 				7A1B93A82472D02300E27AC3 /* Assets.xcassets */,
-				7AF60F662472E6DB0009F457 /* Preview Assets.xcassets */,
 				7A1B93AA2472D02300E27AC3 /* LaunchScreen.storyboard */,
 				7A1B93AD2472D02300E27AC3 /* Info.plist */,
 			);
@@ -164,7 +161,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF60F672472E6DB0009F457 /* Preview Assets.xcassets in Resources */,
 				7A1B93AC2472D02300E27AC3 /* LaunchScreen.storyboard in Resources */,
 				7A1B93A92472D02300E27AC3 /* Assets.xcassets in Resources */,
 				7A1B93A72472D02100E27AC3 /* Main.storyboard in Resources */,
