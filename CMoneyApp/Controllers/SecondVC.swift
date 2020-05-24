@@ -21,6 +21,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     var apiData = [APIData]()
     
+    // MARK: - Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return apiData.count
     }
@@ -43,14 +44,10 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 }
             case .failure(let networkError):
                 switch networkError {
-                case .invalidUrl:
-                    print(networkError)
-                case .invalidResponse:
+                case .invalidUrl, .invalidResponse, .invalidData:
                     print(networkError)
                 case .requestFailed(let error):
                     print(networkError, error)
-                case .invalidData:
-                    print(networkError)
                 default:
                     print("Unidentified Error")
                 }
@@ -66,6 +63,8 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         performSegue(withIdentifier: PropertyKeys.toThirdVC, sender: nil)
     }
     
+    
+    // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ThirdVC
 
@@ -79,13 +78,9 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 destinationVC.image = image
             case .failure(let networkError):
                 switch networkError {
-                case .invalidUrl:
-                    print(networkError)
-                case .invalidResponse:
-                    print(networkError)
                 case .requestFailed(let error):
                     print(networkError, error)
-                case .invalidData:
+                case .invalidUrl, .invalidData, .invalidResponse:
                     print(networkError)
                 default:
                     print("Unidentified Error")
@@ -94,7 +89,8 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             }
         }
     }
-
+    
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,7 +119,7 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         let lineSpacing: CGFloat = 10
         let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         
-        let widthPerItem = floor((collectionViewOutlet.frame.width - (sectionInsets.left + sectionInsets.right) - cellSpacing * (cellPerRow - 1)) / 4)
+        let widthPerItem = floor((view.frame.width - (sectionInsets.left + sectionInsets.right) - cellSpacing * (cellPerRow - 1) ) / 4)
         flowLayout.itemSize = CGSize(width: widthPerItem, height: widthPerItem)
         
         flowLayout.estimatedItemSize = .zero
@@ -144,23 +140,18 @@ class SecondVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 }
             case.failure(let networkError):
                 switch networkError {
-                case .decodingError:
-                    print(networkError)
-                case .invalidData:
-                    print(networkError)
-                case .invalidResponse:
-                    print(networkError)
-                case .invalidUrl:
+                case .decodingError, .invalidData, .invalidResponse, .invalidUrl:
                     print(networkError)
                 case .requestFailed(let error):
                     print(networkError, error)
-                    
                 }
             }
         }
     }
 }
 
+
+// MARK: - Contrasting Text Colour
 extension UIImage {
     var averageColor: UIColor? {
         guard let inputImage = CIImage(image: self) else { return nil }
